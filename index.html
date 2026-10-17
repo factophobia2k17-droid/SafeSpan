@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SafeSpan – Baby utensils that tell you when to replace them</title>
+<meta name="description" content="SafeSpan baby utensils have a built-in, usage-based indicator that shows when a utensil is no longer safe to use. Clear signs, safer feeding.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#EEF4F7;--surface:#FFFFFF;--ink:#12303B;--muted:#4C6772;--line:#CFDDE4;--brand:#0F6B6E;--on-brand:#FFFFFF;--safe:#2E9F77;--warn:#E8A92B;--stop:#D9482B;--spoon:#DCE8EE;
+--head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1D24;--surface:#172A33;--ink:#E6F0F4;--muted:#9DB5C0;--line:#2B434E;--brand:#5CC4C0;--on-brand:#0F1D24;--spoon:#2B4350;--safe:#3FBF92;--warn:#F2B93F;--stop:#EF6444}}
+:root[data-theme="dark"]{--bg:#0F1D24;--surface:#172A33;--ink:#E6F0F4;--muted:#9DB5C0;--line:#2B434E;--brand:#5CC4C0;--on-brand:#0F1D24;--spoon:#2B4350;--safe:#3FBF92;--warn:#F2B93F;--stop:#EF6444}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 var(--body)}
+a{color:var(--brand)}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0;letter-spacing:-.015em}
+h1{font-size:clamp(2.3rem,5.2vw,3.7rem);font-weight:700}
+h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:700;margin-bottom:12px}
+h3{font-size:1.2rem;font-weight:600;margin-bottom:6px}
+p{margin:0 0 12px;max-width:60ch}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:20px;gap:16px}
+.logo{font:700 1.4rem var(--head);color:var(--ink);text-decoration:none}
+nav{display:flex;align-items:center;gap:22px}
+nav a{color:var(--ink);text-decoration:none;font-weight:500}
+nav a:hover{color:var(--brand)}
+.btn{display:inline-block;background:var(--brand);color:var(--on-brand);padding:12px 22px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--brand);font-size:1rem;font-family:var(--body);cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:hover:not(:disabled){filter:brightness(1.08)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+nav .btn{color:var(--on-brand)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:48px 24px 72px}
+.hero p.lead{font-size:1.2rem;margin:20px 0 28px;color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.demo{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:24px}
+.demo svg{width:100%;height:auto;display:block}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 18px;text-align:center;font-size:.9rem;font-weight:600}
+.stages span{padding:8px 4px;border-radius:10px;border:2px solid var(--line);color:var(--muted);transition:all .3s}
+.stages span[aria-current="true"]{color:var(--ink);border-color:var(--c)}
+.stages span[aria-current="true"]{background:color-mix(in srgb,var(--c) 18%,transparent)}
+.status{font:600 1.35rem var(--head);margin:0}
+.sub{color:var(--muted);margin:2px 0 16px;min-height:3.2em}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.link{background:none;border:0;color:var(--brand);font:600 1rem var(--body);text-decoration:underline;cursor:pointer;padding:8px}
+.note{font-size:.85rem;color:var(--muted);margin:14px 0 0}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:28px}
+.cols.two{grid-template-columns:repeat(2,1fr)}
+.step{font:700 2rem var(--head);color:var(--brand);display:block;margin-bottom:6px}
+.price-row{display:grid;grid-template-columns:1fr auto;gap:16px;padding:18px 0;border-top:1px solid var(--line);align-items:baseline}
+.price-row:last-of-type{border-bottom:1px solid var(--line)}
+.price-row p{margin:0;color:var(--muted)}
+.price{font:700 1.6rem var(--head)}
+.tbl{overflow-x:auto;margin-top:24px}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--head);font-weight:600}
+td:first-child{font-weight:600}
+th.us,td.us{background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.team{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:20px;font:600 1.25rem var(--head)}
+.contact a.big{font:700 clamp(1.4rem,3.4vw,2.2rem) var(--head);word-break:break-all}
+.contact ul{list-style:none;padding:0;margin:20px 0 0}
+.contact li{margin-bottom:6px}
+footer{padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+@media (max-width:820px){.hero{grid-template-columns:1fr;gap:36px;padding-top:24px}.cols,.cols.two{grid-template-columns:1fr;gap:28px}nav a.l{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="logo" href="#top">SafeSpan</a>
+<nav aria-label="Main"><a class="l" href="#how">How it works</a><a class="l" href="#pricing">Pricing</a><a class="l" href="#team">Team</a><a class="btn" href="#contact">Contact us</a></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+<div>
+<h1>The baby spoon that tells you when to replace it.</h1>
+<p class="lead">SafeSpan feeding utensils have a built-in indicator that changes color with use. No app, no battery, no guessing.</p>
+<div class="cta"><a class="btn" href="#how">See how it works</a><a class="btn alt" href="mailto:safespan@gmail.com?subject=SafeSpan%20parent%20pilot">Join the parent pilot</a></div>
+</div>
+
+<div class="demo" role="group" aria-label="Interactive indicator demo">
+<svg viewBox="0 0 480 160" role="img" aria-label="A baby spoon with a color indicator on the handle">
+<path d="M150 66h300a15 15 0 0 1 0 30H150z" fill="var(--spoon)" stroke="var(--line)" stroke-width="2"/>
+<ellipse cx="85" cy="81" rx="72" ry="52" fill="var(--spoon)" stroke="var(--line)" stroke-width="2"/>
+<ellipse cx="85" cy="81" rx="50" ry="33" fill="var(--line)" opacity=".55"/>
+<rect id="ind" x="290" y="72" width="130" height="18" rx="9" fill="var(--safe)"/>
+<path d="M355 96v26" stroke="var(--muted)" stroke-width="2"/>
+<text x="355" y="144" text-anchor="middle" fill="var(--muted)" font-size="14" font-family="Figtree,system-ui,sans-serif">Built-in indicator</text>
+</svg>
+<div class="stages" id="stages">
+<span style="--c:var(--safe)">Safe</span><span style="--c:var(--warn)">Replace soon</span><span style="--c:var(--stop)">Replace now</span>
+</div>
+<p class="status" id="status" aria-live="polite">Safe to use</p>
+<p class="sub" id="sub">The indicator is green. Feed and wash as usual.</p>
+<div class="row">
+<button class="btn" id="use" type="button">Use it for a while</button>
+<button class="link" id="reset" type="button">Start with a new spoon</button>
+</div>
+<p class="note">Illustrative demo. Once the color changes, it can’t go back. We’re still testing the real indicator with parents.</p>
+</div>
+</div>
+
+<section id="problem"><div class="wrap">
+<h2>Wear and washing don’t always show.</h2>
+<p>Most parents replace feeding utensils by habit or by eye, because nothing tells them when it’s time. That leaves a quiet worry every mealtime: is this still safe for my baby?</p>
+<div class="cols">
+<div><h3>Know when it’s safe</h3><p>A clear signal shows when a utensil is hygienically safe or no longer safe to use.</p></div>
+<div><h3>Worry less</h3><p>No more uncertainty about when to replace. The utensil tells you.</p></div>
+<div><h3>Feel confident</h3><p>Make caregiving decisions you can stand behind, without keeping track in your head.</p></div>
+</div>
+</div></section>
+
+<section id="how"><div class="wrap">
+<h2>How SafeSpan works</h2>
+<p>A usage-based indicator is built into every utensil. It works without electricity, apps or manual tracking.</p>
+<div class="cols">
+<div><span class="step">1</span><h3>Feed and wash as usual</h3><p>Nothing to set up. It’s used like any other baby spoon, bowl or sipper.</p></div>
+<div><span class="step">2</span><h3>The indicator changes color</h3><p>It moves from safe to unsafe as the utensil is used. The change is permanent, so it can’t be reset.</p></div>
+<div><span class="step">3</span><h3>Replace when it tells you</h3><p>When it shows unsafe, swap it for a fresh one. A replacement pack is always available.</p></div>
+</div>
+</div></section>
+
+<section id="who"><div class="wrap">
+<h2>Who it’s for</h2>
+<div class="cols two">
+<div><h3>Parents of babies aged 0–3</h3><p>Especially first-time parents in urban and semi-urban areas, who want clear guidance instead of guesswork.</p></div>
+<div><h3>Day-care centres and clinics</h3><p>Day-care centres, pediatric hospitals and maternity clinics can order in bulk. <a href="mailto:safespan@gmail.com?subject=SafeSpan%20institutional%20orders">Ask about institutional orders</a>.</p></div>
+</div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+<h2>Planned pricing</h2>
+<p>Simple pricing for a small premium on safety.</p>
+<div style="margin-top:20px">
+<div class="price-row"><div><h3>SafeSpan Baby Spoon</h3><p>One spoon with the built-in indicator.</p></div><div class="price">₹229</div></div>
+<div class="price-row"><div><h3>Starter Feeding Kit</h3><p>Spoon, bowl and sipper.</p></div><div class="price">₹899</div></div>
+<div class="price-row"><div><h3>Replacement Utensil Pack</h3><p>Fresh utensils when the indicator says it’s time.</p></div><div class="price">₹499</div></div>
+<div class="price-row"><div><h3>Institutional orders</h3><p>For day-care centres, hospitals and clinics.</p></div><div class="price" style="font-size:1.1rem"><a href="mailto:safespan@gmail.com?subject=SafeSpan%20institutional%20orders">Get a quote</a></div></div>
+</div>
+</div></section>
+
+<section id="compare"><div class="wrap">
+<h2>How SafeSpan compares</h2>
+<p>Most baby utensils compete on design and materials. None gives you a replacement signal.</p>
+<div class="tbl"><table>
+<thead><tr><th></th><th class="us">SafeSpan</th><th>Typical baby utensils</th><th>App-based trackers</th></tr></thead>
+<tbody>
+<tr><td>Tells you when to replace</td><td class="us">Yes, built-in visual indicator</td><td>No, left to your judgment</td><td>Only if you log usage</td></tr>
+<tr><td>Needs an app or power</td><td class="us">No</td><td>No</td><td>Yes</td></tr>
+<tr><td>Shows hygiene risk</td><td class="us">Yes, safe and unsafe stages</td><td>No</td><td>Indirectly</td></tr>
+<tr><td>Can be reset</td><td class="us">No, the change is permanent</td><td>Not applicable</td><td>Yes</td></tr>
+</tbody></table></div>
+</div></section>
+
+<section id="team"><div class="wrap">
+<h2>Team Spartans</h2>
+<p>The students behind SafeSpan.</p>
+<div class="team"><span>Ashwath Raghav</span><span>Ayush Mishra</span><span>Rohan Agarwal</span><span>Sriram S</span></div>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+<h2>Talk to us</h2>
+<p>Want to join the parent pilot, order for an institution, or ask a question? Write to us.</p>
+<a class="big" href="mailto:safespan@gmail.com">safespan@gmail.com</a>
+<ul>
+<li>Phone: <a href="tel:+919025918823">+91 90259 18823</a></li>
+<li>Web: <a href="https://www.safespan.com">www.safespan.com</a></li>
+</ul>
+</div></section>
+</main>
+
+<footer><div class="wrap">SafeSpan. Clear signs, safer feeding.</div></footer>
+
+<script>
+(function(){
+var MAX=10,step=0;
+var ind=document.getElementById('ind'),st=document.getElementById('status'),sub=document.getElementById('sub'),
+use=document.getElementById('use'),reset=document.getElementById('reset'),
+tabs=document.querySelectorAll('#stages span');
+var stops=[[0,'--safe'],[5,'--safe'],[7,'--warn'],[9,'--stop'],[10,'--stop']];
+function rgb(h){h=h.trim().replace('#','');return[parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+function colorAt(s){
+  var cs=getComputedStyle(document.documentElement);
+  for(var i=0;i<stops.length-1;i++){
+    var a=stops[i],b=stops[i+1];
+    if(s>=a[0]&&s<=b[0]){
+      var t=b[0]===a[0]?0:(s-a[0])/(b[0]-a[0]),ca=rgb(cs.getPropertyValue(a[1])),cb=rgb(cs.getPropertyValue(b[1]));
+      return'rgb('+ca.map(function(v,k){return Math.round(v+(cb[k]-v)*t);}).join(',')+')';
+    }
+  }
+}
+function render(){
+  ind.style.fill=colorAt(step);
+  var stage=step<=5?0:step<=8?1:2;
+  tabs.forEach(function(t,i){if(i===stage)t.setAttribute('aria-current','true');else t.removeAttribute('aria-current');});
+  var text=[
+    ['Safe to use','The indicator is green. Feed and wash as usual.'],
+    ['Replace soon','The color is changing. Get a fresh utensil ready.'],
+    ['Replace now','The indicator shows this utensil is no longer safe to use.']
+  ][stage];
+  st.textContent=text[0];sub.textContent=text[1];
+  use.disabled=step>=MAX;
+  use.textContent=step>=MAX?'Replace this spoon':'Use it for a while';
+}
+use.addEventListener('click',function(){if(step<MAX){step++;render();}});
+reset.addEventListener('click',function(){step=0;render();});
+if(window.matchMedia){var mq=window.matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',render);}
+render();
+})();
+</script>
+</body>
+</html>
